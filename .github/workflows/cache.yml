@@ -14,7 +14,25 @@ jobs:
           python-version: '3.8'
           architecture: 'x64'
 
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+          # This path is specific to Ubuntu
+          path: ~/.cache/pip
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
+
+      - name: Virtualenv
+        run: |
+          python3 -m pip install --upgrade pip virtualenv
+          virtualenv venv
+          source venv/bin/activate
+
       - name: Install dependencies
         run: |
+          which python3
           python3 -m pip install --upgrade pip setuptools wheel
           python3 -m pip install -r requirements.txt
