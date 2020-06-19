@@ -33,6 +33,8 @@ jobs:
 
       - name: Install dependencies
         run: |
+          source venv/bin/activate
           which python3
+          which python
           python3 -m pip install --upgrade pip setuptools wheel
           python3 -m pip install -r requirements.txt
