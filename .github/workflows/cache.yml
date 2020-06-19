@@ -14,11 +14,14 @@ jobs:
           python-version: '3.8'
           architecture: 'x64'
 
-      - name: Cache pip
+      - name: Cache Python
+        id: cache-python
         uses: actions/cache@v2
         with:
           # This path is specific to Ubuntu
-          path: ~/.cache/pip
+          path: |
+            ~/.cache/pip
+            venv
           # Look to see if there is a cache hit for the corresponding requirements file
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
           restore-keys: |
@@ -29,7 +32,6 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip virtualenv
           virtualenv venv
-          source venv/bin/activate
 
       - name: Install dependencies
         run: |
