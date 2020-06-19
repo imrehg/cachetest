@@ -1,5 +1,7 @@
 name: Python
 
+on: [push, pull_request]
+
 jobs:
   deploy:
     runs-on: ubuntu-18.04
