@@ -1,4 +1,4 @@
-name: Python
+name: Node
 
 on: [push, pull_request]
 
