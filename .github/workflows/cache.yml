@@ -28,13 +28,15 @@ jobs:
             ${{ runner.os }}-pip-
             ${{ runner.os }}-
 
-      - name: Virtualenv
+      - name: Install Virtualenv
         run: |
           python3 -m pip install --upgrade pip virtualenv
+          pwd
           virtualenv venv
 
       - name: Install dependencies
         run: |
+          pwd
           source venv/bin/activate
           which python3
           which python
